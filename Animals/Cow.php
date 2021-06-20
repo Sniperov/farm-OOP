@@ -5,7 +5,7 @@ class Cow{
     public $name = 'Коровы';
 
     public function getProduct(){
-        return rand(8,12);
+        return rand(12,12);
     }
 
     public function add()

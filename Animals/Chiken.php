@@ -5,7 +5,7 @@ class Chiken{
     public $name = 'Куры';
 
     public function getProduct(){
-        return rand(0,1);
+        return rand(1,1);
     }
 
     public function add()

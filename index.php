@@ -3,11 +3,30 @@ include 'farm.php';
 
 use App\Farm;
 
-echo Farm::getCountAnimals('cow') . '<br>';
-echo Farm::getProducts('cow') . '<br><br>';
+$animals = ['cow', 'chiken'];
 
-echo Farm::getCountAnimals('chiken') . '<br>';
-echo Farm::getProducts('chiken'). '<br>';
+if(array_key_exists('harvest',$_POST)){
+    echo 'Последний недельный сбор продуктов:<br>';
+    foreach(Farm::getProducts($animals) as $name => $value)
+    {
+        echo Farm::getAnimalName($name). ' -> ' . $value . '<br>';
+    }
+    echo "<br>";
+}
+
+foreach(Farm::getCountAnimals($animals) as $value)
+{
+    echo $value . '<br>';
+}
+
+echo "<br>Всего собранно продуктов: <br>";
+
+foreach(Farm::getAllProducts($animals) as $value)
+{
+    echo $value . '<br>';
+}
+
+echo "<br>";
 
 function addAnimal($animalName)
 {
@@ -27,5 +46,8 @@ elseif(array_key_exists('chiken',$_POST)){
 </form>
 <form method="post">
     <input type="submit" name="chiken" value="Add Chiken"/>
+</form>
+<form method="post">
+    <input type="submit" name="harvest" value="harvest"/>
 </form>
 
